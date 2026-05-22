@@ -21,6 +21,8 @@ const router =Router()
 
     router.delete('/:id',userController.deleteUserById)
 
+    
+
    
 
 

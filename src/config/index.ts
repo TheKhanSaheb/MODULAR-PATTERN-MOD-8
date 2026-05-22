@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-import { prototype } from 'events'
+
 import path from 'path'
 dotenv.config
 ({path:path.join(process.cwd(),'.env')})

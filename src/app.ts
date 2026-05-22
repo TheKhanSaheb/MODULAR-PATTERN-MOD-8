@@ -1,6 +1,7 @@
 import express, { type Application, type Request, type Response } from 'express'
 import { initDB, pool } from './db'
 import { userRouter } from './modules/user/user.router'
+import { profileRouter } from './modules/profile/profile. routes'
 
 const app: Application = express()
 
@@ -15,6 +16,7 @@ app.use(express.text())
 
 //user router ke app er sathe use kore dibo
 app.use('/api/users', userRouter)
+app.use('/api/profiles', profileRouter)
 
 
 // Home route
