@@ -1,5 +1,6 @@
 import express, { type Application, type Request, type Response } from 'express'
 import { initDB, pool } from './db'
+import { userRouter } from './modules/user/user.router'
 
 const app: Application = express()
 
@@ -12,6 +13,8 @@ app.use(express.text())
 // pool and initdb are cut and pasted to db , index.ts for better modularity and separation of concerns.
 
 
+//user router ke app er sathe use kore dibo
+app.use('/api/users', userRouter)
 
 
 // Home route
@@ -74,28 +77,7 @@ app.get('/api/users/:id', async (req: Request, res: Response) => {
 })
 
 // POST route
-app.post('/api/users', async (req: Request, res: Response) => {
-    const { name, email, password, age } = req.body
 
-    try {
-        const result = await pool.query(
-            'INSERT INTO users (name, email, password, age) VALUES ($1, $2, $3, $4) RETURNING *',
-            [name, email, password, age]
-        )
-
-        res.status(200).json({
-            message: 'User inserted successfully',
-            data: result.rows[0]
-        })
-    } catch (error) {
-        console.error('Error inserting user data:', error)
-
-        res.status(500).json({
-            error: 'Internal Server Error',
-            data: error
-        })
-    }
-})
 //UPDATE route
 app.put('/api/users/:id', async (req: Request, res: Response) => {
     const userId = req.params.id
