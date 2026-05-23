@@ -2,6 +2,7 @@ import express, { type Application, type Request, type Response } from 'express'
 import { initDB, pool } from './db'
 import { userRouter } from './modules/user/user.router'
 import { profileRouter } from './modules/profile/profile. routes'
+import { authRoute } from './modules/auth/auth.route'
 
 const app: Application = express()
 
@@ -17,6 +18,7 @@ app.use(express.text())
 //user router ke app er sathe use kore dibo
 app.use('/api/users', userRouter)
 app.use('/api/profiles', profileRouter)
+app.use('/api/auth', authRoute)
 
 
 // Home route
@@ -28,9 +30,6 @@ app.get('/', (req: Request, res: Response) => {
 
 
 
-// POST route
-
-//UPDATE route
 
 
 
